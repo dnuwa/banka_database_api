@@ -1,5 +1,5 @@
 // GENERAL
-const email = 'dr.kimpatrick@gmail.com';
+const email = 'dr.kimpatrick22222@gmail.com';
 const password = 'Kp15712Kp';
 
 // User signup ***************************************
