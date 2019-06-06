@@ -30,6 +30,14 @@ class Validations {
         errorResponse(req, res, schema);
         next();
     }
+
+    credit(req, res, next) {
+        const schema = Joi.object().keys({
+            amount: Joi.string().required().label('Amount is required !')
+        })
+        errorResponse(req, res, schema);
+        next();
+    }
 }
 export default new Validations();
 

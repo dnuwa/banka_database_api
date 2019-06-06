@@ -101,3 +101,12 @@ exports.checkAmount = (cash, res) => {
         });
     }
 };
+
+exports.checkAmountType = (amount, res) => {
+    if (isNaN(amount)) {
+        return res.status(400).json({
+            status: 400,
+            error: 'Invalid amount format !!!',
+        });
+    }
+};
