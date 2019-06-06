@@ -1,16 +1,15 @@
-// GENERAL
-const email = 'dr.kimpatrick22222@gmail.com';
 const password = 'Kp15712Kp';
 
 // User signup ***************************************
 
 // User data
 exports.signup_user_1 = {
-    email,
-    firstName: 'Patrick',
-    lastName: 'KImanje',
-    password,
-};
+    email: 'dnuwa@gmail.com',
+    firstName: 'daniel',
+    lastName: 'nuwagaba',
+    password: 'somestring1',
+    type: 'staff'
+}
 
 // user with missing fields
 exports.signup_user_2 = {
@@ -19,18 +18,7 @@ exports.signup_user_2 = {
     password,
 };
 
-// firstName with special characters
-exports.signup_user_8 = {
-    email: 'staff@g.com',
-    firstName: 'Pat%%%%##',
-    lastName: 'KImanje',
-    password,
-};
-
-// latName with special characters
-exports.signup_user_9 = {
-    email: 'staff@g.com',
-    firstName: 'Patrick',
-    lastName: 'KImanje%%',
-    password,
-};
+exports.login_user_1 = {
+    email: 'dnuwa@gmail.com',
+    password: 'somestring1'
+}

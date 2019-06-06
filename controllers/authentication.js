@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 
 class Auth {
     // create user account
-     async signup(req, res){
+    async signup(req, res) {
         const {
             email, firstName, lastName, password
         } = req.body;
@@ -46,34 +46,40 @@ class Auth {
         });
     };
 
-    async login (req, res) {
-        const { email, password } =req.body;
-        
-        const query = "SELECT * FROM users WHERE email = $1";
-        
-        const {rows} = await db.query(query, [email])
+    async login(req, res) {
+        const { email, password } = req.body;
 
-        if (!rows[0]){
+        const query = "SELECT * FROM users WHERE email = $1";
+
+        const { rows } = await db.query(query, [email])
+
+        if (!rows[0]) {
             return res.status(400).json({
-                status:400,
+                status: 400,
                 error: "wrong username or password"
             })
         }
 
-        const pass = bcrypt.compareSync(password, rows[0].password);
+        const isAuthenticated = bcrypt.compareSync(password, rows[0].password);
 
-        if(!pass){
+        if (!isAuthenticated) {
             return res.status(400).json({
-                status:400,
+                status: 400,
                 error: "wrong username or password"
-            }) 
+            })
         }
 
         return res.status(200).json({
-            status:200,
+            status: 200,
             data: {
                 token: middleware.token(rows[0].id),
-                email
+                id: rows[0].id,
+                firstName: rows[0].firstname,
+                lastName: rows[0].lastname,
+                email: rows[0].email,
+                type: rows[0].type,
+                isAdmin: rows[0].isadmin,
+                createdAt: rows[0].createdat,
             }
         })
     }
