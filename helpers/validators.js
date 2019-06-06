@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-class Auth {
+class Validations {
     signup(req, res, next) {
         const schema = Joi.object().keys({
             firstName: Joi.string().alphanum().min(3).max(30).required().label('First name is required, must only contain alpha-numeric characters').trim().strict(),
@@ -22,8 +22,16 @@ class Auth {
         errorResponse(req, res, schema);
         next();
     }
+
+    account(req, res, next) {
+        const schema = Joi.object().keys({
+            type: Joi.string().required().label('Account type is required !')
+        })
+        errorResponse(req, res, schema);
+        next();
+    }
 }
-export default new Auth();
+export default new Validations();
 
 
 const errorResponse = (request, response, schema) => {
