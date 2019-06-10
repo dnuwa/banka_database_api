@@ -2,6 +2,8 @@ import auth from '../controllers/authentication';
 import account from '../controllers/createAccount';
 import accTransactions from '../controllers/creditDebit';
 import userType from '../controllers/userType';
+import accountStatus from '../controllers/accountStatus';
+import deleteAccount from '../controllers/deleteAccount';
 import middleware from '../middleware';
 import Validators from '../helpers/validators';
 import validators from '../helpers/validators';
@@ -16,5 +18,6 @@ router.route('/account').post(verifyToken, Validators.account, account.createacc
 router.route('/account/:accountNumber/credit').post(verifyToken, Validators.credit, accTransactions.creditTransaction);
 router.route('/account/:accountNumber/debit').post(verifyToken, validators.credit, accTransactions.debitTransaction)
 router.route('/user/type').put(verifyToken, userType);
+router.route('/account/:accountNumber').patch(verifyToken, accountStatus).delete(verifyToken, deleteAccount);
 
 export default router;
